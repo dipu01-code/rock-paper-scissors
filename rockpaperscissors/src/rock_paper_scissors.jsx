@@ -9,9 +9,11 @@ export default function RockPaperScissors() {
     const [scores, setScores] = useState({ you: 0, draw: 0, cpu: 0 });
     const [youPick, setYouPick] = useState(null);
     const [cpuPick, setCpuPick] = useState(null);
-    const [result, setResult] = useState(null); // 'win' | 'lose' | 'draw'
+    const [result, setResult] = useState(null);
     const [selected, setSelected] = useState(null);
     const [animKey, setAnimKey] = useState(0);
+    const [moveHistory, setMoveHistory] = useState([]);
+    const [winStreak, setWinStreak] = useState(0);
     const totalGames = scores.you + scores.draw + scores.cpu;
 
     const play = (choice) => {
@@ -32,6 +34,16 @@ export default function RockPaperScissors() {
             draw: s.draw + (outcome === "draw" ? 1 : 0),
             cpu: s.cpu + (outcome === "lose" ? 1 : 0),
         }));
+        setWinStreak((streak) => (outcome === "win" ? streak + 1 : 0));
+        setMoveHistory((history) => [
+            {
+                round: history.length + 1,
+                you: choice,
+                cpu,
+                outcome,
+            },
+            ...history,
+        ]);
     };
 
     const reset = () => {
@@ -40,6 +52,8 @@ export default function RockPaperScissors() {
         setCpuPick(null);
         setResult(null);
         setSelected(null);
+        setMoveHistory([]);
+        setWinStreak(0);
     };
 
     const resultLabel = result === "win" ? "You win!" : result === "lose" ? "CPU wins!" : result === "draw" ? "Draw!" : "";
@@ -61,6 +75,7 @@ export default function RockPaperScissors() {
                     </div>
 
                     <div className="rps-total-games">Total games played: {totalGames}</div>
+                    <div className="rps-total-games">Current win streak: {winStreak}</div>
 
                     <div className="rps-arena">
                         <div className="rps-pick-box">
@@ -103,7 +118,22 @@ export default function RockPaperScissors() {
                         ))}
                     </div>
 
-                    <button className="rps-reset" onClick={reset}>Reset scores</button>
+                    <button className="rps-reset" onClick={reset}>Reset game</button>
+
+                    <div className="rps-history">
+                        <div className="rps-history-title">Move history</div>
+                        {moveHistory.length === 0 ? (
+                            <div className="rps-history-empty">No rounds played yet.</div>
+                        ) : (
+                            <ul className="rps-history-list">
+                                {moveHistory.map((entry) => (
+                                    <li key={entry.round} className="rps-history-item">
+                                        Round {entry.round}: You {emojis[entry.you]} vs CPU {emojis[entry.cpu]} - {entry.outcome}
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
+                    </div>
                 </div>
             </div>
         </>

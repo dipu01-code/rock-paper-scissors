@@ -1,222 +1,295 @@
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap');
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
 
   .rps-root {
-    min-height: 100vh;
-    background: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Syne', sans-serif;
-    overflow: hidden;
-    position: relative;
+      min-height: 100vh;
+      background: black;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Syne', sans-serif;
+      overflow: hidden;
+      position: relative;
   }
 
   .rps-bg {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
   }
 
   .rps-card {
-    position: relative;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 28px;
-    padding: 40px 36px 32px;
-    width: 420px;
-    max-width: 95vw;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      position: relative;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 28px;
+      padding: 40px 36px 32px;
+      width: 420px;
+      max-width: 95vw;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.5);
   }
 
   .rps-title {
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    text-align: center;
-    margin-bottom: 28px;
-    font-family: 'Space Mono', monospace;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      text-align: center;
+      margin-bottom: 28px;
+      font-family: 'Space Mono', monospace;
   }
 
   .rps-scoreboard {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 32px;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 32px;
   }
 
   .rps-score {
-    flex: 1;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 14px;
-    padding: 14px 10px;
-    text-align: center;
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 14px;
+      padding: 14px 10px;
+      text-align: center;
   }
 
   .rps-score-label {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    font-family: 'Space Mono', monospace;
-    margin-bottom: 6px;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 6px;
   }
 
   .rps-score-value {
-    font-size: 30px;
-    font-weight: 800;
-    color: #fff;
-    line-height: 1;
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
   }
 
   .rps-arena {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
   }
 
   .rps-pick-box {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
   }
 
   .rps-pick-label {
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.3);
-    font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      font-family: 'Space Mono', monospace;
   }
 
   .rps-pick-emoji {
-    font-size: 64px;
-    line-height: 1;
-    min-height: 72px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      font-size: 64px;
+      line-height: 1;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .rps-pick-emoji.animate-win {
-    animation: popWin 0.5s cubic-bezier(0.34,1.56,0.64,1);
+      animation: popWin 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   .rps-pick-emoji.animate-lose {
-    animation: shakeLose 0.45s ease;
+      animation: shakeLose 0.45s ease;
   }
 
   @keyframes popWin {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.35); }
-    100% { transform: scale(1); }
+      0% {
+          transform: scale(1);
+      }
+
+      50% {
+          transform: scale(1.35);
+      }
+
+      100% {
+          transform: scale(1);
+      }
   }
 
   @keyframes shakeLose {
-    0%,100% { transform: translateX(0); }
-    20% { transform: translateX(-8px); }
-    40% { transform: translateX(8px); }
-    60% { transform: translateX(-6px); }
-    80% { transform: translateX(4px); }
+
+      0%,
+      100% {
+          transform: translateX(0);
+      }
+
+      20% {
+          transform: translateX(-8px);
+      }
+
+      40% {
+          transform: translateX(8px);
+      }
+
+      60% {
+          transform: translateX(-6px);
+      }
+
+      80% {
+          transform: translateX(4px);
+      }
   }
 
   .rps-vs {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.2);
-    font-family: 'Space Mono', monospace;
-    padding-top: 24px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: rgba(255, 255, 255, 0.2);
+      font-family: 'Space Mono', monospace;
+      padding-top: 24px;
   }
 
   .rps-result {
-    text-align: center;
-    min-height: 38px;
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+      text-align: center;
+      min-height: 38px;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
   }
 
   .rps-result-text {
-    font-size: 20px;
-    font-weight: 800;
-    letter-spacing: 0.03em;
-    transition: opacity 0.2s;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      transition: opacity 0.2s;
   }
 
   .rps-choices {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    margin-bottom: 20px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 20px;
   }
 
   .rps-choice-btn {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 18px;
-    width: 96px;
-    height: 96px;
-    font-size: 40px;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 4px;
-    transition: transform 0.15s, border-color 0.2s, background 0.2s;
-    position: relative;
-    overflow: hidden;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 18px;
+      width: 96px;
+      height: 96px;
+      font-size: 40px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: transform 0.15s, border-color 0.2s, background 0.2s;
+      position: relative;
+      overflow: hidden;
   }
 
   .rps-choice-btn:hover {
-    border-color: rgba(255,255,255,0.3);
-    background: rgba(255,255,255,0.09);
-    transform: translateY(-3px);
+      border-color: rgba(255, 255, 255, 0.3);
+      background: rgba(255, 255, 255, 0.09);
+      transform: translateY(-3px);
   }
 
   .rps-choice-btn:active {
-    transform: scale(0.94);
+      transform: scale(0.94);
   }
 
   .rps-choice-btn.selected {
-    border-color: rgba(140,100,255,0.7);
-    background: rgba(100,60,200,0.18);
-    box-shadow: 0 0 0 2px rgba(140,100,255,0.25);
+      border-color: rgba(140, 100, 255, 0.7);
+      background: rgba(100, 60, 200, 0.18);
+      box-shadow: 0 0 0 2px rgba(140, 100, 255, 0.25);
   }
 
   .rps-choice-name {
-    font-size: 9px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    font-family: 'Space Mono', monospace;
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.35);
+      font-family: 'Space Mono', monospace;
   }
 
   .rps-reset {
-    display: block;
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.2);
-    font-family: 'Space Mono', monospace;
-    padding: 6px;
-    transition: color 0.2s;
-    text-align: center;
+      display: block;
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.2);
+      font-family: 'Space Mono', monospace;
+      padding: 6px;
+      transition: color 0.2s;
+      text-align: center;
   }
 
-  .rps-reset:hover { color: rgba(255,255,255,0.5); }
+  .rps-reset:hover {
+      color: rgba(255, 255, 255, 0.5);
+  }
+
+  .rps-total-games {
+      text-align: center;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 10px;
+  }
+
+  .rps-history {
+      margin-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      padding-top: 14px;
+  }
+
+  .rps-history-title {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.45);
+      font-family: 'Space Mono', monospace;
+      margin-bottom: 10px;
+  }
+
+  .rps-history-empty {
+      color: rgba(255, 255, 255, 0.4);
+      font-size: 13px;
+  }
+
+  .rps-history-list {
+      list-style: none;
+      max-height: 150px;
+      overflow: auto;
+      padding-right: 4px;
+  }
+
+  .rps-history-item {
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 13px;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+  }
