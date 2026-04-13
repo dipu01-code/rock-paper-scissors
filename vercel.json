@@ -1,0 +1,5 @@
+{
+    "installCommand": "cd rockpaperscissors && npm ci",
+    "buildCommand": "cd rockpaperscissors && npm run build",
+    "outputDirectory": "rockpaperscissors/dist"
+}
